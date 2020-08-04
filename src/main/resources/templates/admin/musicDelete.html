@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="admin/common/header :: header"></th:block>
+    <script type="text/javascript" th:src="@{~/static/adminstatic/script/news/deleteMusicList.js}"></script>
+    <title>音乐管理</title>
+
+</head>
+<body style="background: #FFFFFF;width: 100%;min-height: 900px;overflow: hidden">
+<section class="navigation-header">
+    <ol class="navigation">
+        <li>音乐管理</li>
+        <li class="active">删除音乐</li>
+    </ol>
+</section>
+<div class="row" style="height: 10px"></div>
+<!--搜索查询部分-->
+<div class="row" style="background: #FFFFFF">
+    <form class="form-horizontal">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label title="for" class="control-label col-sm-4">音乐名称</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="name" placeholder="音乐名称"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" onclick="deleteMusicList.event.searchNewsList()"><i
+                        class="fa fa-search"> 查询</i></button>
+                <!-- &nbsp;&nbsp;
+                 <button type="button" class="btn btn-primary" onclick="newsList.event.addNews()"><i class="fa fa-plus"> 新增</i></button>-->
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row" style="padding-left: 15px;padding-right: 15px">
+    <div class="col-sm-12">
+        <table id="search_table"></table>
+    </div>
+</div>
+<!--新增滚动图片模态框-->
+<div class="modal fade bs-example-modal-lg" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="picModalLabel">审核音乐</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <input type="hidden" name="musicId" id="musicId" value=""/>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">音乐播放</label>
+                                <div class="col-sm-9">
+                                    <audio id="audio" src="/static/users/music/songs/周杰伦+-+告白气球.flac" controls="controls">
+                                        您的浏览器不支持 audio 标签。
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">视频播放</label>
+                                <div class="col-sm-9">
+                                    <video id="video" style="width: 100%" src="/static/users/music/mvs/dawhd14k1n2krn12nrk.mp4"
+                                           controls="controls">
+                                        您的浏览器不支持 video 标签。
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">添加标签</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="tag">
+                                        <option value="">--请选择--</option>
+                                        <option th:each="tag:${tagList}" th:value="${tag.id}"
+                                                th:text="${tag.tagName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">添加简介</label>
+                                <div class="col-sm-9">
+                                    <textarea style="width: 100%;height: 80px;" id="info"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"><i class="fa fa-save" onclick="deleteMusicList.event.saveTag()">
+                    审核通过</i></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        deleteMusicList.init.tableInit();
+        deleteMusicList.init.initModal();
+    });
+</script>
+</html>

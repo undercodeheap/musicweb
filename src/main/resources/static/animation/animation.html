@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>热映电影</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!--轮播图 开始 -->
+<div class="main_banner">
+	<div class="main_banner_wrap">
+		<canvas id="myCanvas" width="150" height="150"></canvas>
+		<div class="main_banner_box" id="m_box">
+			<a href="javascript:void(0)" class="banner_btn js_pre">
+				<span class="banner_btn_arrow"><i></i></span>
+			</a>
+			<a href="javascript:void(0)" class="banner_btn btn_next js_next">
+				<span class="banner_btn_arrow"><i></i></span>
+			</a>
+			<ul>
+				<li id="imgCard0">
+					<a href=""><span style="opacity:0;"></span></a>      
+					<img src="main_banner/1.jpg" alt="">
+					<p style="bottom:0">周杰伦新歌《说好不哭》</p>
+				</li> 
+				<li id="imgCard1">
+					<a href=""><span style="opacity:0.4;"></span></a>      
+					<img src="main_banner/2.jpg" alt="">
+					<p>陈奕迅经典老歌——浮夸</p>
+				</li> 
+				<li id="imgCard2">
+					<a href=""><span style="opacity:0.4;" ></span></a>        
+					<img src="main_banner/3.jpg" alt="">
+					<p>李荣浩 “年轻有为不自卑”</p>
+				</li> 
+				<li id="imgCard3">
+					<a href=""><span style="opacity:0.4;"></span></a>      
+					<img src="main_banner/4.jfif" alt="">
+					<p>薛之谦新歌发行</p>
+				</li> 
+				<li id="imgCard4">
+					<a href=""><span style="opacity:0.4;"></span></a>      
+					<img src="main_banner/5.jfif" alt="">
+					<p>Taylor Swift 重新回归</p>
+				</li> 
+			</ul>
+			<!--火狐倒影图层-->
+			<p id="rflt"></p>
+			<!--火狐倒影图层-->
+		</div>
+		<!--序列号按钮-->
+		<div class="btn_list">
+			<span class="curr"></span><span></span><span></span><span></span><span></span>        
+		</div>
+	</div>
+	
+</div>
+<!--轮播图 结束 -->
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>

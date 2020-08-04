@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.navigation {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+.navigation > li {
+    display: inline-block;
+}
+.navigation > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: ">\00a0";
+}
+.navigation > .active {
+    color: #777;
+}
+/*.content-detail {
+    min-height: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}*/
+.navigation-header{
+    height: 40px;
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="common/header :: header"></th:block>
+  <script type="text/javascript" th:src="@{~/admin/script/news/newsEdit.js}"></script>
+  <script type="text/javascript" th:src="@{~/admin/plug-in/wangEditor-3.1.1/release/wangEditor.min.js}"></script>
+  <script type="text/javascript" th:src="@{~/admin/plug-in/xss.min.js}"></script>
+  <title>新闻编辑</title>
+    <style>
+        #newsContent div{
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="border: 1px solid #dddddd;box-shadow:0px 0px 5px #dddddd">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="h3" style="border-bottom: 1px solid #dddddd">新闻发布</h3>
+        </div>
+    </div>
+    <div class="row" style="background: #FFFFFF">
+        <form class="form-horizontal" id="newsForm" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="id" value="" th:field="*{news.id}"/>
+            <input type="hidden" name="createTime" id="createTime" value="" th:field="*{news.createTime}"/>
+            <input type="hidden" name="creater" id="creater" value="" th:field="*{news.creater}"/>
+            <input type="hidden" name="publishTime" id="publishTime" value="" th:field="*{news.publishTime}"/>
+            <input type="hidden" name="content" id="content" value=""/>
+            <input type="hidden" name="flag" id="flag" value=""/>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="title"  class="control-label col-sm-2">新闻标题</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" th:field="*{news.title}" name="title" id="title" placeholder="新闻标题"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="digest"  class="control-label col-sm-2">摘要</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" th:field="*{news.digest}" rows="5" name="digest" id="digest" placeholder="摘要">
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label  class="control-label col-sm-2">新闻类型</label>
+                    <div class="col-sm-9">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="newsType" th:checked="${news.newsType != null ? #strings.contains(news.newsType,'普通新闻') : false}" value="普通新闻"/> 普通新闻
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="newsType" th:checked="${news.newsType != null ? #strings.contains(news.newsType,'党建新闻') : false}" value="党建新闻"/> 党建新闻
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="newsType" th:checked="${news.newsType != null ? #strings.contains(news.newsType,'公益新闻') : false}" value="公益新闻"/> 公益新闻
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">是否置顶新闻</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="isTop" th:checked="${news.isTop eq '是'}" value="是"/> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="isTop" th:checked="${news.isTop eq '否'}" value="否"/> 否
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="title"  class="control-label col-sm-2">是否推荐新闻</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="isRecommend" th:checked="${news.isRecommend eq '是'}" value="是"/> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="isRecommend" th:checked="${news.isRecommend eq '否'}" value="否"/> 否
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">新闻正文</label>
+                    <div class="col-sm-9">
+                        <div id="div1" style="border: 1px solid #ccc"></div>
+                        <div style="height: 5px"></div>
+                        <div id="newsContent" style="border: 1px solid #ccc;min-height: 200px" th:utext="${news.content}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+       <!-- <form class="form-horizontal">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">上传图片</label>
+                    <div class="col-sm-9">
+                        <div class="row" style="display: none" id="showPic">
+                            <div class="col-sm-8">
+                                <img th:src="${news.titlePic}" style="max-width: 50%;max-height: 50%"/>
+                                <i class="fa fa-remove fa-spin" style="cursor: pointer" title="点击删除上传图片" onclick="newsEdit.event.deleteTitlePic()"></i>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                        <div class="row" style="height: 10px"></div>
+                        <div class="form-group" style="padding-left: 15px;padding-right: 15px">
+                            <input type="file" name="titlePic" id="titlePic" class="file" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>-->
+        <div class="col-sm-12" style="height: 10px"></div>
+        <div class="col-sm-12" style="text-align: center">
+            <button type="button" class="btn btn-primary" onclick="newsEdit.event.saveNews(1)"><i class="fa fa-save"> 保存</i></button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" onclick="newsEdit.event.previewNews()"><i class="fa  fa-life-ring"> 预览</i></button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" onclick="newsEdit.event.saveNews(2)"><i class="fa fa-paper-plane"> 发布</i></button>
+        </div>
+        <div class="col-sm-12" style="height: 50px"></div>
+
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+        newsEdit.init.pageInit();
+        newsEdit.init.formInit();
+    });
+</script>
+</html>
